@@ -2,6 +2,7 @@
 .gradle
 **/build/
 !src/**/build/
+**/gradle/wrappper/
 
 # Compiled class file
 *.class
