@@ -2,7 +2,7 @@ package com.example.demo
 
 import org.springframework.data.annotation.Id
 //import org.springframework.data.annotation.PersistenceConstructor
-import org.springframework.data.relational.core.mapping.MappedCollection
+//import org.springframework.data.relational.core.mapping.MappedCollection
 
 import org.springframework.data.repository.CrudRepository
 
@@ -13,13 +13,16 @@ import org.springframework.stereotype.Component
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.ApplicationArguments
 
-data class Attr (@Id val attrId: String, val attrName: String)
-data class Member(@Id val id: String, val name: String = "unset", @MappedCollection(idColumn = "ATTR_ID") val attrs: Set<Attr>) 
+//for testing one2many
+//data class Attr (@Id val attrId: String, val attrName: String)
+//data class Member(@Id val id: String, val name: String = "unset", @MappedCollection(idColumn = "ATTR_ID") val attrs: Set<Attr>) 
+// if need to create, id should be nullable
+data class Member(@Id val id: String?, val name: String = "unset")
 
 interface MemberRepository : CrudRepository<Member, String> 
 
+// for testing named query
 //data class Name(val name: String)
-
 //interface NameRepository : CrudRepository<Name, String> {
 //   fun getLength(name: String): Long 
 //}
@@ -42,6 +45,10 @@ class FstApplicationRunner(val repository : MemberRepository): ApplicationRunner
 		// named query
 		//repository.getLength
 
-		
+		// insert
+		//val member = Member(null, "rie")
+		//repository.save(member)
+
+		//for (row in repository.findAll()) println(row.toString())
 	}	
 }
