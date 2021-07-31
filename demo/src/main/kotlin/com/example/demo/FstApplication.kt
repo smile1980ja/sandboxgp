@@ -25,16 +25,23 @@ interface MemberRepository : CrudRepository<Member, String>
 //}
 
 @SpringBootApplication
-class DemoApplication 
+class FstApplication 
 fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+	runApplication<FstApplication>(*args)
 }
 
 @Component
-class DemoApplicationRunner(val repository : MemberRepository): ApplicationRunner {
+// repository can change for purpose
+class FstApplicationRunner(val repository : MemberRepository): ApplicationRunner {
 
 	override fun run(args: ApplicationArguments) {
-		val member = repository.findById("1")
-		println("${member.toString()}")
+		// one2many
+		//val member = repository.findById("1")
+		//println("${member.toString()}")
+
+		// named query
+		//repository.getLength
+
+		
 	}	
 }
