@@ -1,4 +1,4 @@
-package com.example.demo.service
+package com.example.demo.controller
 
 import org.springframework.batch.core.step.tasklet.Tasklet
 import org.springframework.stereotype.Component
@@ -7,21 +7,20 @@ import org.springframework.batch.core.StepContribution
 import org.springframework.batch.core.scope.context.ChunkContext
 import org.springframework.batch.repeat.RepeatStatus
 
-import com.example.demo.repository.NameRepository
-import com.example.demo.repository.Name
+import com.example.demo.service.FstService
 
 /**
  *
  */
 @Component
 @StepScope
-public class FstTasklet(val repository: NameRepository) : Tasklet{
+public class FstTasklet(val service: FstService) : Tasklet{
 
     /**
      *
      */
     override fun execute(stepContribution: StepContribution,chunkContext: ChunkContext): RepeatStatus {
-        for (row in repository.getAttrsByName("kenta")) println(row.toString())
+        service.execute()
         return RepeatStatus.FINISHED;
     }
 }

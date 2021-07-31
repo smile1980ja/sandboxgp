@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 
-import com.example.demo.service.FstTasklet
+import com.example.demo.controller.FstTasklet
 
 /**
  *
