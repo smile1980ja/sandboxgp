@@ -11,7 +11,6 @@ import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.ApplicationArguments
-//import org.springframework.beans.factory.annotation.Autowired
 
 data class Member(@Id val id: String, val name: String = "unset") 
 
