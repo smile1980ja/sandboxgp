@@ -22,10 +22,10 @@ data class Member(@Id val id: String?, val name: String = "unset")
 interface MemberRepository : CrudRepository<Member, String> 
 
 // for testing named query
-//data class Name(val name: String)
-//interface NameRepository : CrudRepository<Name, String> {
-//   fun getLength(name: String): Long 
-//}
+data class Name(val name: String, val attrName: String)
+interface NameRepository : CrudRepository<Name, String> {
+   fun getAttrsByName(name: String): List<Name> 
+}
 
 @SpringBootApplication
 class FstApplication 
@@ -35,15 +35,15 @@ fun main(args: Array<String>) {
 
 @Component
 // repository can change for purpose
-class FstApplicationRunner(val repository : MemberRepository): ApplicationRunner {
-
+class FstApplicationRunner(val repository : NameRepository): ApplicationRunner {
+//class FstApplicationRunner(val repository : MemberRepository): ApplicationRunner {
 	override fun run(args: ApplicationArguments) {
 		// one2many
 		//val member = repository.findById("1")
 		//println("${member.toString()}")
 
 		// named query
-		//repository.getLength
+		for (row in repository.getAttrsByName("kenta")) println(row.toString())
 
 		// insert
 		//val member = Member(null, "rie")
