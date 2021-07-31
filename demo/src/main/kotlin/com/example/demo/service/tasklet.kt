@@ -7,18 +7,21 @@ import org.springframework.batch.core.StepContribution
 import org.springframework.batch.core.scope.context.ChunkContext
 import org.springframework.batch.repeat.RepeatStatus
 
+import com.example.demo.repository.NameRepository
+import com.example.demo.repository.Name
+
 /**
  *
  */
 @Component
 @StepScope
-public class FstTasklet: Tasklet {
+public class FstTasklet(val repository: NameRepository) : Tasklet{
 
     /**
      *
      */
     override fun execute(stepContribution: StepContribution,chunkContext: ChunkContext): RepeatStatus {
-        println("Hello, World!");
+        for (row in repository.getAttrsByName("kenta")) println(row.toString())
         return RepeatStatus.FINISHED;
     }
 }
